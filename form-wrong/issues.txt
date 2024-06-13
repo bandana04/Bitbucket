@@ -1,0 +1,31 @@
+﻿Here are the identified errors and problems after reviewing the given PHP script:
+
+
+1. Mismatch Between Form Input Name and Key to Script Access:
+The name attribute of the file input element in HTML form is “document”. According to given php code to access $_FILES["fileToUpload"]["tmp_name"], the key used here is “fileToUpload”. There is mismatch between the file input element in HTML form and key to script access.
+
+
+2. Lack of File Type Validation:
+The form specifies that only PDF files are allowed but according to the given code, the script doesn’t check whether the uploaded file is pdf or not. There is not a code for validating the file type before taking the action. Due to this, users can upload files of any type leading to security risk.
+
+
+3. Assumption of Existing Target Directory:
+The php code assumes that the "uploads/" directory exists without checking. If the directory does not exist, move_uploaded_file function will fail and the file will not be uploaded. This happens if the directory  is not verified before attempting to move the file.
+
+
+4.   Error Handling for File Upload Process:
+The script lacks comprehensive error handling for the file upload process. It does not check whether the file was successfully moved to the target directory or not. Since there is no error handling, there is no feedback which makes debugging harder.
+
+
+
+
+Here are the corrections:
+ 
+1. Corrected File Input Name Attribute: 
+The form input name attribute was changed from "fileToUpload" to "document" to match the array key accessed in $_FILES. This ensures consistency between the form input and the server-side script.
+
+2. File Type Validation: Ensuring that only PDF files are uploaded help in security measures. The modified script includes a simple check to validate that the uploaded file is a PDF.
+
+3. Ensuring that Target Directory Exists Before Uploading:The script adds a check to see if the target directory ("uploads/") exists before attempting to upload the file. If the directory does not exist, it creates one. This prevents errors related to the target directory not being found and in uploading process.
+
+4. Added Error Handling for File Upload: The script includes basic error handling for the move_uploaded_file() function. It checks if the file was successfully moved and provides feedback accordingly. This helps in identifying issues during the file upload process.

@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 def setup_driver():
-    service = Service('C:/Users/Acer/Downloads/chromedriver-win64/chromedriver.exe')  # specify the full path to chromedriver.exe
+    service = Service('C:/Users/Acer/Downloads/chromedriver-win64/chromedriver.exe')  
     driver = webdriver.Chrome(service=service)
     driver.implicitly_wait(10)
     return driver
